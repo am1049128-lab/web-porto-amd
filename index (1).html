@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ahmad Abdul Mujahid — Mahasiswa Ilmu Komputer</title>
+<meta name="description" content="Portofolio Ahmad Abdul Mujahid, mahasiswa Ilmu Komputer Universitas Mitra Bangsa yang sedang membangun fondasi pemrograman.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ahmad Abdul Mujahid — Mahasiswa Ilmu Komputer">
+<meta property="og:description" content="Portofolio mahasiswa Ilmu Komputer Universitas Mitra Bangsa: proyek SejukPro, visualisasi algoritma, dan catatan belajar.">
+<meta name="theme-color" content="#17243A">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2317243A'/%3E%3Ctext x='32' y='46' font-size='40' font-weight='800' text-anchor='middle' fill='%23FFD84A' font-family='Arial'%3EA%3C/text%3E%3C/svg%3E">
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F2F5F0; --ink:#17243A; --muted:#566478; --blue:#2D5BFF; --sun:#FFD84A; --line:#D5DDD3;
+  --card:#fff; --hdr:rgba(242,245,240,.92);
+  --head:'Bricolage Grotesque',system-ui,sans-serif; --body:'Figtree',system-ui,sans-serif;
+}
+:root[data-theme="dark"]{--paper:#0E1525;--ink:#E8EEF8;--muted:#9FADC2;--blue:#7C9AFF;--line:#1E2A42;--card:#17213A;--hdr:rgba(14,21,37,.92)}
+:root[data-theme="dark"] .mark{background:var(--sun);color:#17243A}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{
+  font:400 1.05rem/1.65 var(--body);color:var(--ink);background-color:var(--paper);
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:32px 32px;
+}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+
+/* Navigasi */
+header{position:sticky;top:0;z-index:10;background:var(--hdr);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+nav{display:flex;justify-content:space-between;align-items:center;padding:14px 0;gap:16px;flex-wrap:wrap}
+nav ul{display:flex;gap:22px;list-style:none;padding:0}
+nav ul a{text-decoration:none;font-weight:500;color:var(--muted)}
+nav ul a:hover{color:var(--blue)}
+
+/* Logo / nama di header */
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.mark{display:grid;place-items:center;width:42px;height:42px;background:var(--ink);color:var(--sun);font:800 1.35rem var(--head);border-radius:8px;transform:rotate(-6deg);box-shadow:3px 3px 0 var(--blue);transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s}
+.logo:hover .mark{transform:rotate(6deg) scale(1.08);box-shadow:5px 5px 0 var(--sun)}
+.who{display:flex;flex-direction:column;line-height:1.1}
+.name{font:800 1.3rem var(--head);letter-spacing:-.03em;white-space:nowrap}
+.name span{display:inline-block;white-space:pre;animation:drop .55s calc(var(--i) * 45ms + .1s) cubic-bezier(.2,.8,.3,1.3) backwards;transition:transform .25s calc(var(--i) * 20ms)}
+.logo:hover .name span{transform:translateY(-4px)}
+.tag{font:500 .82rem var(--body);color:var(--muted);margin-top:3px}
+@keyframes drop{from{opacity:0;transform:translateY(-14px) rotate(-8deg)}to{opacity:1;transform:none}}
+
+/* Hero */
+.hero{padding:88px 0 72px;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.hero h1{font:800 clamp(2.6rem,6.5vw,4.6rem)/1.02 var(--head);letter-spacing:-.03em}
+.hero p{margin:22px 0 30px;max-width:46ch;color:var(--muted);font-size:1.15rem}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:12px 22px;border-radius:6px;font-weight:600;text-decoration:none;border:2px solid var(--ink);transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.primary{background:var(--ink);color:var(--paper)}
+.btn.ghost{background:transparent}
+
+/* Visualisasi bubble sort */
+.viz{background:var(--card);border:2px solid var(--ink);border-radius:10px;padding:20px;box-shadow:6px 6px 0 var(--ink)}
+.bars{display:flex;align-items:flex-end;gap:5px;height:190px}
+.bar{flex:1;background:var(--blue);border-radius:3px 3px 0 0;transition:height .12s}
+.bar.cmp{background:var(--sun)}
+.bar.done{background:var(--ink)}
+.viz-foot{display:flex;justify-content:space-between;align-items:center;margin-top:14px;font-size:.92rem;color:var(--muted)}
+.viz button{font:600 .9rem var(--body);padding:7px 14px;border:2px solid var(--ink);border-radius:6px;background:var(--sun);cursor:pointer}
+.viz button:disabled{opacity:.5;cursor:default}
+
+/* Section umum */
+section{padding:64px 0;border-top:1px solid var(--line)}
+h2{font:700 clamp(1.8rem,4vw,2.4rem)/1.1 var(--head);letter-spacing:-.02em;margin-bottom:28px}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.about p+p{margin-top:14px}
+.facts{list-style:none;padding:0;display:grid;gap:12px;align-content:start}
+.facts li{padding:12px 16px;background:var(--card);border-left:5px solid var(--blue);border-radius:0 6px 6px 0}
+.facts b{display:block;font:700 1rem var(--head)}
+
+/* Skill */
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:28px}
+.skills h3{font:700 1.1rem var(--head);margin-bottom:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{padding:5px 12px;background:var(--card);border:1.5px solid var(--ink);border-radius:99px;font-size:.92rem;font-weight:500}
+
+/* Proyek: baris, bukan kartu seragam */
+.project{display:grid;grid-template-columns:150px 1fr auto;gap:24px;padding:26px 0;border-bottom:1px solid var(--line);align-items:start}
+#plist{border-top:1px solid var(--ink)}
+.project[hidden]{display:none}
+.year{font:700 1.1rem var(--head);color:var(--blue)}
+.project h3{font:700 1.4rem var(--head);margin-bottom:6px}
+.project p{color:var(--muted);max-width:60ch}
+.project .chips{margin-top:12px}
+.links{display:flex;gap:14px;font-weight:600}
+.links a{text-decoration-thickness:2px;text-underline-offset:4px}
+
+/* Pendidikan */
+.timeline{border-left:3px solid var(--ink);padding-left:26px;display:grid;gap:30px}
+.timeline h3{font:700 1.15rem var(--head)}
+.timeline small{color:var(--muted);font-size:.95rem}
+
+/* Kontak */
+.contact p{max-width:50ch;margin-bottom:22px;color:var(--muted)}
+footer{padding:28px 0 48px;color:var(--muted);font-size:.92rem;border-top:1px solid var(--line)}
+
+/* ===== Fitur tambahan ===== */
+.theme{width:38px;height:38px;border-radius:50%;border:2px solid var(--ink);background:var(--card);color:var(--ink);font-size:1.05rem;cursor:pointer;transition:transform .3s}
+.theme:hover{transform:rotate(25deg) scale(1.08)}
+.photo{margin:0 0 22px;max-width:240px}
+.photo img,.photo .ph{width:100%;aspect-ratio:1;object-fit:cover;border:2px solid var(--ink);border-radius:10px;box-shadow:6px 6px 0 var(--sun);display:block}
+.photo .ph{display:grid;place-items:center;background:var(--blue);color:#fff;font:800 4.2rem var(--head)}
+.filter{display:flex;gap:10px;flex-wrap:wrap;margin:-8px 0 8px}
+.filter button{font:600 .92rem var(--body);padding:7px 16px;border:2px solid var(--ink);border-radius:99px;background:var(--card);color:var(--ink);cursor:pointer;transition:background .2s,color .2s}
+.filter button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.gh{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.note{padding:20px;background:var(--card);border-top:5px solid var(--sun);border-radius:0 0 8px 8px}
+.note h3{font:700 1.15rem var(--head);margin-bottom:8px}
+.note p{color:var(--muted);font-size:1rem}
+.note small{display:block;margin-top:12px;color:var(--blue);font-weight:600}
+.cform{margin-top:40px;max-width:520px;display:grid;gap:8px}
+.cform h3{font:700 1.3rem var(--head);margin-bottom:6px}
+.cform label{font-weight:600;font-size:.95rem}
+.cform input,.cform textarea{font:inherit;padding:10px 12px;border:2px solid var(--ink);border-radius:6px;background:var(--card);color:var(--ink);margin-bottom:6px;width:100%}
+button.btn{font:inherit;font-weight:600;cursor:pointer;color:inherit}
+
+/* ===== Animasi ===== */
+/* Bar progres scroll */
+#progress{position:fixed;top:0;left:0;height:4px;width:100%;background:var(--blue);transform:scaleX(0);transform-origin:left;z-index:20}
+
+/* Animasi masuk hero (berurutan saat halaman dibuka) */
+@keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:scale(.92) rotate(-2deg)}to{opacity:1;transform:none}}
+.hero h1{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+.hero .role{animation:rise .7s .15s cubic-bezier(.2,.7,.2,1) both}
+.hero p{animation:rise .7s .3s cubic-bezier(.2,.7,.2,1) both}
+.hero .btns{animation:rise .7s .45s cubic-bezier(.2,.7,.2,1) both}
+.hero .viz{animation:pop .8s .35s cubic-bezier(.2,.7,.2,1) backwards}
+
+/* Teks mengetik */
+.role{margin-top:18px;font:600 1.3rem var(--head);color:var(--blue);min-height:1.8em}
+.caret{display:inline-block;width:3px;height:1.1em;background:var(--blue);margin-left:3px;vertical-align:-3px;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* Muncul saat di-scroll */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+.reveal.show{opacity:1;transform:none}
+
+/* Hover interaktif */
+.chips span{transition:transform .2s,background .2s,color .2s}
+.chips span:hover{transform:translateY(-3px) rotate(-2deg);background:var(--sun)}
+.facts li{transition:transform .25s,border-color .25s}
+.facts li:hover{transform:translateX(8px);border-color:var(--sun)}
+.project{transition:background .25s,padding-left .25s}
+.project:hover{background:rgba(255,216,74,.22);padding-left:14px}
+.btn.primary:hover{box-shadow:4px 4px 0 var(--sun)}
+nav ul a{position:relative}
+nav ul a::after{content:"";position:absolute;left:0;bottom:-4px;height:3px;width:100%;background:var(--blue);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+nav ul a:hover::after,nav ul a.active::after{transform:scaleX(1)}
+nav ul a.active{color:var(--ink)}
+
+/* Garis timeline tumbuh */
+.timeline{position:relative;border-left:0}
+.timeline::before{content:"";position:absolute;left:0;top:0;width:3px;height:100%;background:var(--ink);transform:scaleY(0);transform-origin:top;transition:transform 1.2s ease}
+.timeline.show::before{transform:scaleY(1)}
+.timeline>div{position:relative}
+.timeline>div::before{content:"";position:absolute;left:-34px;top:8px;width:13px;height:13px;border-radius:50%;background:var(--sun);border:3px solid var(--ink)}
+
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none}
+  .hero *,.caret,.name span{animation:none!important}
+}
+
+@media (max-width:760px){
+  .hero,.about{grid-template-columns:1fr;gap:32px}
+  .hero{padding-top:48px}
+  .project{grid-template-columns:1fr;gap:8px}
+  nav ul{gap:14px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<div id="progress" aria-hidden="true"></div>
+<header>
+  <nav class="wrap" aria-label="Navigasi utama">
+    <a class="logo" href="#top" aria-label="Ahmad Abdul Mujahid, ke atas halaman">
+      <span class="mark" aria-hidden="true">A</span>
+      <span class="who" aria-hidden="true"><span class="name" id="name">Ahmad Abdul Mujahid</span><span class="tag">Mahasiswa Ilmu Komputer</span></span>
+    </a>
+    <ul>
+      <li><a href="#tentang">Tentang</a></li>
+      <li><a href="#skill">Skill</a></li>
+      <li><a href="#proyek">Proyek</a></li>
+      <li><a href="#pendidikan">Pendidikan</a></li>
+      <li><a href="#catatan">Catatan</a></li>
+      <li><a href="#kontak">Kontak</a></li>
+      <li><button class="theme" id="theme" type="button" aria-label="Ganti tema terang atau gelap"></button></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <div>
+      <h1>Belajar dari nol, membangun satu proyek demi satu.</h1>
+      <div class="role" aria-live="off">Saya <span id="typed"></span><span class="caret"></span></div>
+      <p>Halo, saya Ahmad Abdul Mujahid, mahasiswa Ilmu Komputer semester 1 di Universitas Mitra Bangsa. Saya sedang membangun fondasi pemrograman dan mendokumentasikan proses belajarnya di sini.</p>
+      <div class="btns">
+        <a class="btn primary" href="#proyek">Lihat proyek</a>
+        <a class="btn ghost" href="#kontak">Hubungi saya</a>
+      </div>
+    </div>
+
+    <div class="viz" aria-label="Animasi bubble sort">
+      <div class="bars" id="bars" role="img" aria-label="Batang yang sedang diurutkan"></div>
+      <div class="viz-foot">
+        <span id="status">Bubble sort: siap</span>
+        <button id="shuffle" type="button">Acak &amp; urutkan</button>
+      </div>
+    </div>
+  </div>
+
+  <section id="tentang">
+    <div class="wrap about">
+      <div>
+        <h2>Tentang saya</h2>
+        <p>Saya Ahmad Abdul Mujahid, mahasiswa program studi Ilmu Komputer di Universitas Mitra Bangsa. Saat ini saya baru berada di semester 1 dan sedang mempelajari dasar-dasar pemrograman serta cara berpikir logis dalam memecahkan masalah.</p>
+        <p>Tujuan saya sederhana: rutin membuat proyek kecil, belajar dari kesalahan, dan menjadikan situs ini tempat menyimpan perkembangan saya dari waktu ke waktu.</p>
+      </div>
+      <div class="side">
+        <figure class="photo"><img src="foto.jpg" alt="Foto Ahmad Abdul Mujahid" width="240" height="240"></figure>
+        <ul class="facts">
+        <li><b>Universitas Mitra Bangsa</b>S1 Ilmu Komputer, semester 1</li>
+        <li><b>Sedang dipelajari</b>Dasar pemrograman, web, dan algoritma</li>
+        <li><b>Target</b>Membangun portofolio proyek sejak semester awal</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="skill">
+    <div class="wrap">
+      <h2>Yang sedang saya pelajari</h2>
+      <div class="skills">
+        <div><h3>Bahasa pemrograman</h3><div class="chips"><span>Python</span><span>JavaScript</span></div></div>
+        <div><h3>Web</h3><div class="chips"><span>HTML</span><span>CSS</span><span>JavaScript</span></div></div>
+        <div><h3>Dasar &amp; alat</h3><div class="chips"><span>Logika &amp; algoritma</span><span>Git &amp; GitHub</span><span>VS Code</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="proyek">
+    <div class="wrap">
+      <h2>Proyek</h2>
+      <p class="gh" id="gh" hidden></p>
+      <div class="filter" role="group" aria-label="Filter proyek">
+        <button type="button" data-f="all" aria-pressed="true">Semua</button>
+        <button type="button" data-f="web" aria-pressed="false">Web</button>
+        <button type="button" data-f="algoritma" aria-pressed="false">Algoritma</button>
+      </div>
+      <div id="plist">
+
+      <article class="project" data-cat="web">
+        <div class="year">2026</div>
+        <div>
+          <h3>SejukPro</h3>
+          <p>Web layanan servis AC dengan kalkulator kebutuhan BTU yang memberi rekomendasi PK dan estimasi biaya listrik bulanan. Juga ada halaman layanan pencucian, pemasangan, perbaikan, dan pembongkaran AC, diagnosa cepat gangguan, FAQ, serta formulir booking yang terhubung ke WhatsApp.</p>
+          <div class="chips"><span>Kalkulator BTU</span><span>Estimasi biaya listrik</span><span>Layanan AC</span></div>
+        </div>
+        <div class="links"><a href="https://am1049128-lab.github.io/web-ac-sejukpro/" target="_blank" rel="noopener">Demo</a><a href="https://github.com/am1049128-lab/web-ac-sejukpro" target="_blank" rel="noopener">Kode</a></div>
+      </article>
+
+      <article class="project" data-cat="web">
+        <div class="year">2026</div>
+        <div>
+          <h3>Web Portofolio Pribadi</h3>
+          <p>Situs yang sedang kamu lihat ini. Dibuat dengan HTML, CSS, dan JavaScript murni, lengkap dengan animasi dan tampilan responsif.</p>
+          <div class="chips"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+        </div>
+        <div class="links"><a href="#">Kode</a></div>
+      </article>
+
+      <article class="project" data-cat="algoritma">
+        <div class="year">2026</div>
+        <div>
+          <h3>Visualisasi Bubble Sort</h3>
+          <p>Animasi interaktif yang menunjukkan cara kerja algoritma bubble sort langkah demi langkah. Cobalah di bagian atas halaman ini.</p>
+          <div class="chips"><span>JavaScript</span><span>CSS</span></div>
+        </div>
+        <div class="links"><a href="#">Kode</a></div>
+      </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="pendidikan">
+    <div class="wrap">
+      <h2>Pendidikan &amp; rencana</h2>
+      <div class="timeline">
+        <div><h3>S1 Ilmu Komputer, Universitas Mitra Bangsa</h3><small>2026 – sekarang (semester 1)</small></div>
+        <div><h3>Target berikutnya: proyek pertama di GitHub dan aktif di komunitas coding</h3><small>Rencana</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="catatan">
+    <div class="wrap">
+      <h2>Catatan belajar</h2>
+      <div class="notes">
+        <div class="note"><h3>Mengubah rumus menjadi kode</h3><p>Menerjemahkan perhitungan beban pendinginan ruangan menjadi fungsi JavaScript yang menghitung hasil secara langsung saat input berubah.</p><small>Dari proyek SejukPro</small></div>
+        <div class="note"><h3>Algoritma lebih mudah kalau digambar</h3><p>Membuat animasi bubble sort membuat saya paham bahwa setiap pertukaran dua elemen adalah satu langkah kecil menuju data yang terurut.</p><small>Dari visualisasi bubble sort</small></div>
+        <div class="note"><h3>Dari komputer sendiri ke internet</h3><p>Belajar alur Git: commit, push, lalu mempublikasikan situs gratis lewat GitHub Pages agar bisa dibuka siapa saja.</p><small>Dari proses mengunggah proyek</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontak" class="contact">
+    <div class="wrap">
+      <h2>Kontak</h2>
+      <p>Ingin berdiskusi, berkolaborasi, atau memberi masukan untuk portofolio ini? Silakan hubungi saya lewat email, telepon, atau GitHub di bawah.</p>
+      <div class="btns">
+        <a class="btn primary" href="mailto:am1049128@gmail.com">am1049128@gmail.com</a>
+        <a class="btn ghost" href="cv.pdf" download>Unduh CV</a>
+        <a class="btn ghost" href="tel:+6281226818063">0812 2681 8063</a>
+        <a class="btn ghost" href="https://github.com/am1049128-lab" target="_blank" rel="noopener">GitHub</a>
+      </div>
+
+      <form class="cform" id="cform">
+        <h3>Kirim pesan</h3>
+        <label for="nama">Nama</label>
+        <input id="nama" name="nama" autocomplete="name" placeholder="Nama kamu">
+        <label for="pesan">Pesan</label>
+        <textarea id="pesan" name="pesan" rows="4" required placeholder="Tulis pesan singkat"></textarea>
+        <div class="btns">
+          <button class="btn primary" type="submit">Kirim lewat WhatsApp</button>
+          <button class="btn ghost" type="button" id="mailbtn">Kirim lewat email</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">&copy; <span id="yr"></span> Ahmad Abdul Mujahid. Dibuat dengan HTML, CSS, dan JavaScript.</div></footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+// Animasi bubble sort
+const barsEl = document.getElementById('bars');
+const statusEl = document.getElementById('status');
+const btn = document.getElementById('shuffle');
+const N = 20;
+let data = [], bars = [];
+
+function init() {
+  barsEl.innerHTML = '';
+  data = Array.from({length: N}, (_, i) => i + 1);
+  for (let i = N - 1; i > 0; i--) {            // acak (Fisher-Yates)
+    const j = Math.floor(Math.random() * (i + 1));
+    [data[i], data[j]] = [data[j], data[i]];
+  }
+  bars = data.map(v => {
+    const b = document.createElement('div');
+    b.className = 'bar';
+    b.style.height = (v / N * 100) + '%';
+    barsEl.appendChild(b);
+    return b;
+  });
+}
+const wait = ms => new Promise(r => setTimeout(r, ms));
+const draw = () => bars.forEach((b, i) => b.style.height = (data[i] / N * 100) + '%');
+
+async function bubbleSort() {
+  btn.disabled = true;
+  init();
+  let steps = 0;
+  for (let i = 0; i < N - 1; i++) {
+    for (let j = 0; j < N - i - 1; j++) {
+      bars[j].classList.add('cmp'); bars[j + 1].classList.add('cmp');
+      if (data[j] > data[j + 1]) { [data[j], data[j + 1]] = [data[j + 1], data[j]]; draw(); steps++; }
+      statusEl.textContent = 'Bubble sort: ' + steps + ' pertukaran';
+      await wait(45);
+      bars[j].classList.remove('cmp'); bars[j + 1].classList.remove('cmp');
+    }
+    bars[N - i - 1].classList.add('done');
+  }
+  bars[0].classList.add('done');
+  statusEl.textContent = 'Selesai: ' + steps + ' pertukaran';
+  btn.disabled = false;
+}
+btn.addEventListener('click', bubbleSort);
+init();
+
+// ===== Animasi =====
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// 0. Nama di header: pecah per huruf agar bisa jatuh bergantian
+const nameEl = document.getElementById('name');
+nameEl.innerHTML = [...nameEl.textContent].map((ch, i) => '<span style="--i:' + i + '">' + ch + '</span>').join('');
+
+// 1. Teks mengetik bergantian
+const roles = ['mahasiswa Ilmu Komputer.', 'calon web developer.', 'pembelajar logika dan algoritma.', 'pembuat proyek kecil.'];
+const typed = document.getElementById('typed');
+if (reduce) {
+  typed.textContent = roles[0];
+} else {
+  let r = 0, c = 0, deleting = false;
+  (function type() {
+    const word = roles[r];
+    typed.textContent = word.slice(0, c);
+    let delay = deleting ? 35 : 80;
+    if (!deleting && c === word.length) { deleting = true; delay = 1400; }
+    else if (deleting && c === 0) { deleting = false; r = (r + 1) % roles.length; delay = 400; }
+    else c += deleting ? -1 : 1;
+    setTimeout(type, delay);
+  })();
+}
+
+// 2. Muncul saat di-scroll (elemen diberi kelas lewat JS, jadi aman jika JS mati)
+const targets = document.querySelectorAll('section h2, .about p, .facts li, .skills > div, .project, .timeline, .contact p, .contact .btns, .note, .cform, .photo, .filter');
+targets.forEach(el => {
+  el.classList.add('reveal');
+  const sibs = [...el.parentElement.children].filter(e => e.classList.contains('reveal'));
+  el.style.setProperty('--d', Math.min(sibs.indexOf(el), 4) * 0.12 + 's');
+});
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('show'); io.unobserve(e.target); } });
+}, { threshold: 0.15 });
+targets.forEach(el => io.observe(el));
+
+// 3. Bar progres scroll
+const prog = document.getElementById('progress');
+function onScroll() {
+  const max = document.documentElement.scrollHeight - innerHeight;
+  prog.style.transform = 'scaleX(' + (max > 0 ? scrollY / max : 0) + ')';
+}
+addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+// 4. Menu aktif sesuai section yang terlihat
+const links = document.querySelectorAll('nav ul a');
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+  });
+}, { rootMargin: '-45% 0px -50% 0px' });
+document.querySelectorAll('main section[id]').forEach(s => spy.observe(s));
+
+// 6. Mode gelap
+const root = document.documentElement, themeBtn = document.getElementById('theme');
+const icon = () => themeBtn.textContent = root.dataset.theme === 'dark' ? '\u2600' : '\u263E';
+themeBtn.addEventListener('click', () => {
+  const t = root.dataset.theme === 'dark' ? 'light' : 'dark';
+  root.dataset.theme = t;
+  try { localStorage.setItem('theme', t); } catch (e) {}
+  icon();
+});
+icon();
+
+// 7. Foto profil: jika foto.jpg belum ada, tampilkan inisial
+const img = document.querySelector('.photo img');
+const fallback = () => img.replaceWith(Object.assign(document.createElement('div'), { className: 'ph', textContent: 'AM' }));
+img.addEventListener('error', fallback);
+if (img.complete && !img.naturalWidth) fallback();
+
+// 8. Filter proyek
+const fbtns = document.querySelectorAll('.filter button');
+fbtns.forEach(b => b.addEventListener('click', () => {
+  fbtns.forEach(x => x.setAttribute('aria-pressed', x === b));
+  document.querySelectorAll('#plist .project').forEach(p => p.hidden = b.dataset.f !== 'all' && p.dataset.cat !== b.dataset.f);
+}));
+
+// 9. Statistik GitHub (diam jika gagal)
+fetch('https://api.github.com/users/am1049128-lab')
+  .then(r => r.ok ? r.json() : Promise.reject())
+  .then(d => {
+    const el = document.getElementById('gh');
+    el.textContent = 'Di GitHub: ' + d.public_repos + ' repositori publik' + (d.followers ? ', ' + d.followers + ' pengikut' : '');
+    el.hidden = false;
+  }).catch(() => {});
+
+// 10. Formulir kontak (WhatsApp atau email, tanpa server)
+const cform = document.getElementById('cform');
+const msg = () => 'Halo Ahmad, saya ' + (cform.nama.value.trim() || 'pengunjung portofolio') + '. ' + cform.pesan.value.trim();
+cform.addEventListener('submit', e => {
+  e.preventDefault();
+  window.open('https://wa.me/6281226818063?text=' + encodeURIComponent(msg()), '_blank', 'noopener');
+});
+document.getElementById('mailbtn').addEventListener('click', () => {
+  if (!cform.reportValidity()) return;
+  location.href = 'mailto:am1049128@gmail.com?subject=' + encodeURIComponent('Pesan dari portofolio') + '&body=' + encodeURIComponent(msg());
+});
+
+// 5. Bar bubble sort ikut bergerak mengikuti kursor (efek paralaks ringan)
+const viz = document.querySelector('.viz');
+if (!reduce && matchMedia('(hover:hover)').matches) {
+  viz.addEventListener('mousemove', e => {
+    const b = viz.getBoundingClientRect();
+    const x = (e.clientX - b.left) / b.width - 0.5, y = (e.clientY - b.top) / b.height - 0.5;
+    viz.style.transform = 'perspective(700px) rotateY(' + x * 8 + 'deg) rotateX(' + -y * 8 + 'deg)';
+  });
+  viz.addEventListener('mouseleave', () => viz.style.transform = '');
+  viz.style.transition = 'transform .2s';
+}
+</script>
+</body>
+</html>
