@@ -1,0 +1,19 @@
+{
+  "name": "web-porto-amd",
+  "version": "1.0.0",
+  "description": "Portofolio Ahmad Abdul Mujahid — Mahasiswa Ilmu Komputer",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "portfolio",
+    "amoled",
+    "glassmorphism",
+    "javascript",
+    "sorting-algorithms"
+  ],
+  "author": "Ahmad Abdul Mujahid",
+  "license": "MIT"
+}
+

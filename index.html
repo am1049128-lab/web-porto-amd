@@ -4,206 +4,245 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ahmad Abdul Mujahid — Mahasiswa Ilmu Komputer</title>
-  <meta name="description" content="Portofolio resmi Ahmad Abdul Mujahid, mahasiswa S1 Ilmu Komputer Universitas Mitra Bangsa. Proyek SejukPro, simulasi algoritma interaktif, dan catatan belajar.">
+  <meta name="description" content="Portofolio resmi Ahmad Abdul Mujahid, mahasiswa S1 Ilmu Komputer Universitas Mitra Bangsa. Desain modern AMOLED Glassmorphism, proyek SejukPro, dan Interactive Sorting Lab.">
   <link rel="canonical" href="https://am1049128-lab.github.io/web-porto-amd/">
 
-  <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
+  <!-- Open Graph / Meta -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://am1049128-lab.github.io/web-porto-amd/">
   <meta property="og:title" content="Ahmad Abdul Mujahid — Mahasiswa S1 Ilmu Komputer">
-  <meta property="og:description" content="Portofolio mahasiswa S1 Ilmu Komputer: proyek SejukPro, interactive algorithm lab, dan dokumentasi belajar web development.">
+  <meta property="og:description" content="Portofolio mahasiswa Ilmu Komputer: proyek SejukPro, simulasi algoritma interaktif, dan catatan belajar.">
   <meta property="og:image" content="https://am1049128-lab.github.io/web-porto-amd/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://am1049128-lab.github.io/web-porto-amd/">
   <meta name="twitter:title" content="Ahmad Abdul Mujahid — Mahasiswa S1 Ilmu Komputer">
-  <meta name="twitter:description" content="Portofolio mahasiswa S1 Ilmu Komputer: proyek SejukPro, interactive algorithm lab, dan dokumentasi belajar web development.">
+  <meta name="twitter:description" content="Portofolio mahasiswa Ilmu Komputer: proyek SejukPro, simulasi algoritma interaktif, dan catatan belajar.">
   <meta name="twitter:image" content="https://am1049128-lab.github.io/web-porto-amd/og-image.png">
 
-  <meta name="theme-color" content="#17243A">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2317243A'/%3E%3Ctext x='32' y='46' font-size='40' font-weight='800' text-anchor='middle' fill='%23FFD84A' font-family='Arial'%3EA%3C/text%3E%3C/svg%3E">
+  <meta name="theme-color" content="#09090B">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2309090B'/%3E%3Ccircle cx='32' cy='32' r='22' fill='%23141418' stroke='%23FF7A00' stroke-width='3'/%3E%3Ctext x='32' y='41' font-size='26' font-weight='800' text-anchor='middle' fill='%23FFFFFF' font-family='sans-serif'%3EA%3C/text%3E%3C/svg%3E">
 
-  <!-- Inisialisasi Tema Cepat (Mencegah FOUC) -->
+  <!-- Inisialisasi Tema Gelap Cepat -->
   <script>
     try {
-      document.documentElement.dataset.theme = localStorage.getItem('theme') ||
-        (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.dataset.theme = localStorage.getItem('theme') || 'dark';
     } catch(e) {}
   </script>
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 
-  <!-- Stylesheet Eksternal (Modular) -->
+  <!-- Stylesheet AMOLED Glassmorphism -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- Bar Progres Scroll -->
+  <!-- Ambient Animated Background (GPU-Accelerated) -->
+  <div class="ambient-glow-container" aria-hidden="true">
+    <div class="ambient-orb ambient-orb-1"></div>
+    <div class="ambient-orb ambient-orb-2"></div>
+  </div>
+
+  <!-- Scroll Progress Bar -->
   <div id="progress" aria-hidden="true"></div>
 
-  <!-- Header & Navigasi -->
-  <header>
-    <nav class="wrap" aria-label="Navigasi utama">
-      <a class="logo" href="#top" aria-label="Ahmad Abdul Mujahid, kembali ke atas">
+  <!-- =======================================================================
+       TOP NAVIGATION BAR (Navbar di Atas dengan AMOLED Glassmorphism)
+       ======================================================================= -->
+  <header class="top-header">
+    <div class="wrap top-bar">
+      <!-- Identitas & Logo Brand -->
+      <a class="logo-avatar" href="#top" aria-label="Ahmad Abdul Mujahid, kembali ke atas">
         <span class="mark" aria-hidden="true">A</span>
-        <span class="who" aria-hidden="true">
+        <div class="who">
           <span class="name" id="name">Ahmad Abdul Mujahid</span>
-          <span class="tag">Mahasiswa Ilmu Komputer</span>
-        </span>
+          <span class="tag">
+            <span class="live-status-dot" aria-hidden="true"></span>
+            Mahasiswa Ilmu Komputer
+          </span>
+        </div>
       </a>
 
-      <!-- Menu Navigasi -->
-      <ul class="nav-menu" id="nav-menu">
-        <li><a href="#tentang">Tentang</a></li>
-        <li><a href="#skill">Skill</a></li>
-        <li><a href="#proyek">Proyek</a></li>
-        <li><a href="#sertifikat">Sertifikat</a></li>
-        <li><a href="#pendidikan">Pendidikan</a></li>
-        <li><a href="#catatan">Catatan</a></li>
-        <li><a href="#kontak">Kontak</a></li>
-      </ul>
+      <!-- Menu Navigasi Utama -->
+      <nav class="nav-container" aria-label="Navigasi utama">
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="#top"><span>Beranda</span></a></li>
+          <li><a href="#tentang"><span>Tentang</span></a></li>
+          <li><a href="#skill"><span>Skill</span></a></li>
+          <li><a href="#proyek"><span>Proyek</span></a></li>
+          <li><a href="#sertifikat"><span>Sertifikat</span></a></li>
+          <li><a href="#pendidikan"><span>Pendidikan</span></a></li>
+          <li><a href="#catatan"><span>Catatan</span></a></li>
+          <li><a href="#kontak"><span>Kontak</span></a></li>
+        </ul>
+      </nav>
 
-      <!-- Aksi Navigasi: Toggle Tema & Menu HP -->
+      <!-- Aksi Navigasi Cepat -->
       <div class="nav-actions">
-        <button class="theme" id="theme" type="button" aria-label="Ganti tema terang atau gelap" title="Ubah tema"></button>
+        <button class="theme-btn theme" id="theme" type="button" aria-label="Ganti tema terang atau gelap" title="Ubah tema"></button>
+        <a class="btn primary sm nav-cta" href="#kontak">Hubungi</a>
         <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Buka menu navigasi" aria-expanded="false">
           <span></span>
           <span></span>
           <span></span>
         </button>
       </div>
-    </nav>
+    </div>
   </header>
 
   <!-- Konten Utama -->
   <main id="top">
+    <div class="wrap">
 
-    <!-- Hero Section -->
-    <div class="wrap hero">
-      <div>
-        <h1>Belajar dari nol, membangun satu proyek demi satu.</h1>
-        <div class="role" aria-live="polite">Saya <span id="typed"></span><span class="caret"></span></div>
-        <p>Halo, saya Ahmad Abdul Mujahid, mahasiswa S1 Ilmu Komputer semester 1 di Universitas Mitra Bangsa. Saya fokus membangun fondasi pemrograman yang kuat, logika algoritma, dan mendokumentasikan prosesnya di situs ini.</p>
-        <div class="btns">
-          <a class="btn primary" href="#proyek">Lihat proyek saya</a>
-          <a class="btn ghost" href="#kontak">Hubungi saya</a>
+      <!-- Streak / Percikan Banner Card -->
+      <div class="streak-banner" aria-label="Status konsistensi belajar">
+        <div class="streak-left">
+          <div class="streak-icon-wrap" aria-hidden="true">🔥</div>
+          <div class="streak-info">
+            <span class="streak-number"><b>1</b> Semester Aktif Belajar</span>
+            <span class="streak-desc">Percikan Semangat Pemrograman &amp; Fondasi Algoritma</span>
+          </div>
         </div>
+        <div class="streak-badge">S1 Ilmu Komputer</div>
       </div>
 
-      <!-- Interactive Sorting Lab (Enhanced CS Showcase) -->
-      <div class="viz" aria-label="Simulasi algoritma pengurutan interaktif">
-        <div class="viz-head">
-          <div class="viz-title">
-            <span class="pulse" aria-hidden="true"></span>
-            <span>Algorithm Sorting Lab</span>
-          </div>
-          <div class="viz-select-wrap">
-            <select id="algo-select" aria-label="Pilih algoritma pengurutan">
-              <option value="bubble">Bubble Sort</option>
-              <option value="selection">Selection Sort</option>
-              <option value="insertion">Insertion Sort</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="viz-meta">
-          <span class="viz-badge">Waktu: <b id="stat-time">O(n²)</b></span>
-          <span class="viz-badge">Ruang: <b id="stat-space">O(1)</b></span>
-          <span class="viz-badge">Data: <b>20 Elemen</b></span>
-        </div>
-
-        <div class="bars" id="bars" role="img" aria-label="Batang grafik pengurutan data"></div>
-
-        <div class="viz-foot">
-          <div>
-            <div id="status" style="font-weight: 600;">Bubble Sort: Siap diuji</div>
-            <div class="viz-stats">
-              <span>Banding: <b id="stat-cmp">0</b></span>
-              <span>Tukar: <b id="stat-swap">0</b></span>
-            </div>
-          </div>
-
-          <div class="viz-controls">
-            <div class="speed-ctrl" title="Kecepatan animasi">
-              <span>Cepat</span>
-              <input type="range" id="speed" min="10" max="150" value="95" aria-label="Kecepatan animasi">
-            </div>
-            <button id="shuffle" type="button" title="Acak urutan batang">Acak</button>
-            <button id="start-sort" class="primary" type="button" title="Mulai jalankan algoritma">Urutkan</button>
-            <button id="reset-sort" type="button" disabled title="Hentikan pengurutan">Batal</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Section Tentang Saya -->
-    <section id="tentang">
-      <div class="wrap about">
+      <!-- Hero Section -->
+      <div class="hero">
         <div>
-          <h2>Tentang saya</h2>
-          <p>Saya Ahmad Abdul Mujahid, mahasiswa program studi S1 Ilmu Komputer di Universitas Mitra Bangsa. Saat ini saya berada di semester 1 dan sedang mendalami fondasi ilmu komputer: algoritma, logika pemrograman, dan arsitektur web modern.</p>
-          <p>Filosofi belajar saya sederhana: tidak hanya membaca teori, tetapi langsung menerapkannya ke dalam proyek nyata, menganalisis kesalahan, dan menyempurnakannya secara berkala.</p>
-          <p>Situs ini menjadi dokumentasi terbuka atas perjalanan saya belajar teknologi, dari baris kode pertama hingga pengembangan sistem yang bermanfaat untuk banyak orang.</p>
+          <h1>Membangun fondasi logika &amp; aplikasi web nyata.</h1>
+          <div class="role" aria-live="polite">Saya <span id="typed"></span><span class="caret"></span></div>
+          <p>Halo, saya Ahmad Abdul Mujahid, mahasiswa semester 1 di Universitas Mitra Bangsa. Saya mempelajari fondasi pemrograman, struktur data, dan mendokumentasikan setiap kemajuannya di sini.</p>
+          <div class="btns">
+            <a class="btn primary" href="#proyek">Lihat proyek saya</a>
+            <a class="btn ghost" href="#kontak">Hubungi saya</a>
+          </div>
         </div>
-        <div class="side">
-          <figure class="photo">
-            <img src="foto.jpg" alt="Foto Ahmad Abdul Mujahid" width="240" height="240" loading="lazy">
-          </figure>
-          <ul class="facts">
-            <li><b>Universitas Mitra Bangsa</b>S1 Ilmu Komputer (Semester 1)</li>
-            <li><b>Fokus Saat Ini</b>Pemrograman Web, Algoritma, &amp; Struktur Data</li>
-            <li><b>Target Karier</b>Software Engineer / Web Application Developer</li>
-          </ul>
+
+        <!-- Interactive Algorithm Sorting Lab (AMOLED Glass Card) -->
+        <div class="viz" aria-label="Simulasi algoritma pengurutan interaktif">
+          <div class="viz-head">
+            <div class="viz-title">
+              <span class="pulse" aria-hidden="true"></span>
+              <span>Algorithm Sorting Lab</span>
+            </div>
+            <div class="viz-select-wrap">
+              <select id="algo-select" aria-label="Pilih algoritma pengurutan">
+                <option value="bubble">Bubble Sort</option>
+                <option value="selection">Selection Sort</option>
+                <option value="insertion">Insertion Sort</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="viz-meta">
+            <span class="viz-badge">Waktu: <b id="stat-time">O(n²)</b></span>
+            <span class="viz-badge">Ruang: <b id="stat-space">O(1)</b></span>
+            <span class="viz-badge">Data: <b>20 Elemen</b></span>
+          </div>
+
+          <div class="bars" id="bars" role="img" aria-label="Batang grafik visualisasi data"></div>
+
+          <div class="viz-foot">
+            <div>
+              <div id="status" style="font-weight: 700; color: #FFFFFF;">Bubble Sort: Siap diuji</div>
+              <div class="viz-stats">
+                <span>Banding: <b id="stat-cmp">0</b></span>
+                <span>Tukar: <b id="stat-swap">0</b></span>
+              </div>
+            </div>
+
+            <div class="viz-controls">
+              <div class="speed-ctrl" title="Kecepatan animasi">
+                <span>Speed</span>
+                <input type="range" id="speed" min="10" max="150" value="95" aria-label="Kecepatan animasi">
+              </div>
+              <button id="shuffle" type="button" title="Acak urutan batang">Acak</button>
+              <button id="start-sort" class="primary" type="button" title="Mulai pengurutan">Urutkan</button>
+              <button id="reset-sort" type="button" disabled title="Hentikan pengurutan">Batal</button>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
 
-    <!-- Section Skill -->
-    <section id="skill">
-      <div class="wrap">
+      <!-- Section: Tentang Saya (Grouped Container Style) -->
+      <section id="tentang">
+        <h2>Tentang saya</h2>
+        <p class="section-sub">Mengenal lebih dekat latar belakang dan motivasi saya di bidang teknologi informasi.</p>
+
+        <div class="about">
+          <div class="about-text-card">
+            <p>Saya Ahmad Abdul Mujahid, mahasiswa program studi S1 Ilmu Komputer di Universitas Mitra Bangsa. Saat ini saya berada di semester awal dan sedang mendalami prinsip-prinsip komputasi, cara kerja algoritma, serta arsitektur antarmuka web modern.</p>
+            <p>Bagi saya, proses belajar terbaik adalah dengan langsung mempraktikkannya ke dalam proyek fungsional. Setiap baris kode, kesalahan logika (*debugging*), dan perbaikan performa adalah batu loncatan penting untuk menjadi software engineer yang kompeten.</p>
+            <p>Website ini dirancang sebagai wadah portofolio terbuka untuk melacak perkembangan teknis saya dari semester ke semester.</p>
+          </div>
+
+          <div class="side">
+            <figure class="photo">
+              <img src="foto.jpg" alt="Foto Ahmad Abdul Mujahid" width="240" height="240" loading="eager" fetchpriority="high">
+            </figure>
+            <ul class="facts">
+              <li>
+                <b>Universitas Mitra Bangsa</b>
+                <span>S1 Ilmu Komputer (Semester 1)</span>
+              </li>
+              <li>
+                <b>Fokus Keahlian</b>
+                <span>Algoritma, DOM &amp; Desain Web Responsif</span>
+              </li>
+              <li>
+                <b>Aspirasi Karier</b>
+                <span>Software Engineer / Full-Stack Web Developer</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Keahlian (Skills) -->
+      <section id="skill">
         <h2>Keahlian yang sedang diasah</h2>
-        <p class="section-sub">Teknologi dan alat yang aktif saya pelajari dan terapkan dalam proyek praktis.</p>
+        <p class="section-sub">Teknologi dan perkakas yang saya eksplorasi secara mendalam.</p>
+
         <div class="skills">
-          <div>
-            <h3>Bahasa pemrograman</h3>
+          <div class="skill-group">
+            <h3>Bahasa Pemrograman</h3>
             <div class="chips">
               <span>Python</span>
               <span>JavaScript (ES6+)</span>
             </div>
           </div>
-          <div>
+
+          <div class="skill-group">
             <h3>Web Development</h3>
             <div class="chips">
               <span>HTML5 Semantic</span>
-              <span>CSS3 (Flexbox &amp; Grid)</span>
+              <span>CSS3 Flexbox &amp; Grid</span>
               <span>DOM Manipulation</span>
-              <span>Responsive Web Design</span>
+              <span>Glassmorphism UI</span>
             </div>
           </div>
-          <div>
+
+          <div class="skill-group">
             <h3>Alat &amp; Fondasi</h3>
             <div class="chips">
               <span>Logika &amp; Algoritma</span>
               <span>Git &amp; GitHub</span>
               <span>VS Code</span>
-              <span>Figma (Dasar)</span>
+              <span>Figma</span>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Section Proyek (Enhanced Case Study) -->
-    <section id="proyek">
-      <div class="wrap">
-        <h2>Proyek</h2>
-        <p class="section-sub">Daftar proyek mandiri yang saya kerjakan untuk menguji pemahaman dan memecahkan masalah nyata.</p>
+      <!-- Section: Proyek -->
+      <section id="proyek">
+        <h2>Proyek Pilihan</h2>
+        <p class="section-sub">Karya mandiri yang saya bangun untuk memecahkan persoalan praktis.</p>
         <p class="gh" id="gh" hidden></p>
 
         <div class="filter" role="group" aria-label="Filter kategori proyek">
@@ -221,24 +260,23 @@
               <span class="badge badge-live">🟢 Versi 1.0</span>
             </div>
             <div>
-              <h3>SejukPro — Platform Layanan &amp; Kalkulator AC</h3>
+              <h3>SejukPro — Platform Servis &amp; Kalkulator BTU AC</h3>
               <p>Platform web servis AC dengan kalkulator kebutuhan pendinginan (BTU) cerdas yang merekomendasikan kapasitas PK yang tepat dan menghitung estimasi tagihan listrik bulanan pengguna.</p>
 
               <div class="project-case">
-                <b>Studi Kasus:</b> Pengguna sering salah memilih kapasitas AC sehingga ruangan tidak dingin atau listrik boros. SejukPro memecahkan masalah ini dengan kalkulasi parameter luas ruangan, paparan sinar matahari, jumlah penghuni, diagnosa mandiri gangguan AC, dan pemesanan instan via WhatsApp API.
+                <b>Studi Kasus:</b> Mengatasi kekeliruan pengguna dalam memilih kapasitas pendingin ruangan dengan kalkulasi otomatis luas ruangan, paparan sinar matahari, jumlah penghuni, diagnosa cepat gangguan AC, dan integrasi WhatsApp API.
               </div>
 
               <div class="chips">
                 <span>Kalkulator BTU</span>
-                <span>Estimasi Tagihan Listrik</span>
-                <span>Layanan Servis AC</span>
+                <span>Estimasi Biaya PLN</span>
                 <span>WhatsApp API</span>
-                <span>Responsive CSS</span>
+                <span>Vanilla JS</span>
               </div>
             </div>
             <div class="links">
               <a href="https://am1049128-lab.github.io/web-ac-sejukpro/" target="_blank" rel="noopener">Buka Demo ↗</a>
-              <a href="https://github.com/am1049128-lab/web-ac-sejukpro" target="_blank" rel="noopener">Repositori ↗</a>
+              <a href="https://github.com/am1049128-lab/web-ac-sejukpro" target="_blank" rel="noopener">Kode Sumber ↗</a>
             </div>
           </article>
 
@@ -250,22 +288,21 @@
             </div>
             <div>
               <h3>Web Portofolio Pribadi</h3>
-              <p>Situs portofolio pribadi bertema neo-brutalisme teknis yang Anda jelajahi saat ini. Dibuat murni dengan HTML5, CSS3, dan JavaScript modular tanpa ketergantungan framework berat, sehingga menghasilkan kecepatan muat yang sangat tinggi.</p>
+              <p>Situs portofolio pribadi bertema AMOLED Glassmorphism modern. Dibuat murni dengan HTML5, CSS3, dan JavaScript modular tanpa ketergantungan framework berat untuk performa maksimal.</p>
 
               <div class="project-case">
-                <b>Fitur Utama:</b> Dark mode otomatis dan manual tersimpan, navigasi drawer responsif, interactive CS sorting lab, bar progres baca, dan form kontak multi-kanal.
+                <b>Fitur:</b> Top navigation glassmorphism, interactive sorting lab, ambient glowing streak card, salin kontak instan, dan integrasi GitHub API.
               </div>
 
               <div class="chips">
-                <span>HTML5</span>
-                <span>CSS Variables</span>
+                <span>HTML5 Semantik</span>
+                <span>CSS Glassmorphism</span>
                 <span>Vanilla JavaScript</span>
-                <span>Clean Architecture</span>
-                <span>Open Graph SEO</span>
+                <span>Zero Framework</span>
               </div>
             </div>
             <div class="links">
-              <a href="https://github.com/am1049128-lab/web-porto-amd" target="_blank" rel="noopener">Repositori ↗</a>
+              <a href="https://github.com/am1049128-lab/web-porto-amd" target="_blank" rel="noopener">Kode Sumber ↗</a>
             </div>
           </article>
 
@@ -276,35 +313,33 @@
               <span class="badge badge-live">✨ Lab CS</span>
             </div>
             <div>
-              <h3>Interactive Sorting Lab</h3>
-              <p>Laboratorium visualisasi algoritma pengurutan interaktif yang mendemonstrasikan perbandingan elemen, pertukaran indeks, dan kompleksitas waktu langkah demi langkah untuk Bubble Sort, Selection Sort, dan Insertion Sort.</p>
+              <h3>Interactive Algorithm Sorting Lab</h3>
+              <p>Modul simulasi pengurutan interaktif (Bubble, Selection, Insertion Sort) dengan metrik perbandingan waktu nyata, kontrol kecepatan, dan analisis kompleksitas Big-O.</p>
 
               <div class="project-case">
-                <b>Nilai Edukasi:</b> Menjembatani konsep teori Big-O notation dengan representasi visual dinamis yang dapat diatur kecepatannya dan dihitung metrik pertukarannya secara real-time.
+                <b>Nilai Edukasi:</b> Menjembatani pemahaman teori Big-O notation dengan representasi grafis visual yang intuitif.
               </div>
 
               <div class="chips">
                 <span>Algoritma Pengurutan</span>
                 <span>Big-O Notation</span>
-                <span>Asynchronous JavaScript</span>
+                <span>Async / Await</span>
                 <span>DOM Animation</span>
               </div>
             </div>
             <div class="links">
-              <a href="#top">Coba di Atas ↑</a>
+              <a href="#top">Uji di Atas ↑</a>
               <a href="https://github.com/am1049128-lab/web-porto-amd/blob/main/js/sorting.js" target="_blank" rel="noopener">Lihat Kode ↗</a>
             </div>
           </article>
 
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Section Baru: Sertifikat & Pembelajaran -->
-    <section id="sertifikat">
-      <div class="wrap">
+      <!-- Section: Sertifikat & Pembelajaran -->
+      <section id="sertifikat">
         <h2>Sertifikat &amp; Pembelajaran</h2>
-        <p class="section-sub">Pelatihan mandiri dan kursus teknis yang saya selesaikan untuk memvalidasi pemahaman praktis.</p>
+        <p class="section-sub">Pelatihan mandiri dan kursus teknis yang telah saya selesaikan.</p>
 
         <div class="certs-grid">
           <div class="cert-card">
@@ -319,7 +354,7 @@
             <div class="chips">
               <span>HTML5</span>
               <span>CSS3</span>
-              <span>Responsive Design</span>
+              <span>Responsive Web</span>
             </div>
           </div>
 
@@ -330,12 +365,12 @@
                 <span class="badge badge-live">Selesai</span>
               </div>
               <div class="cert-org">Version Control &amp; Kolaborasi</div>
-              <p class="cert-desc">Penguasaan branching, alur commit terstruktur, penanganan konflik kode, serta deployment otomatis melalui GitHub Pages.</p>
+              <p class="cert-desc">Penguasaan branching, alur commit terstruktur, penanganan konflik kode, serta deployment otomatis via GitHub Pages.</p>
             </div>
             <div class="chips">
               <span>Git</span>
               <span>GitHub Pages</span>
-              <span>CI/CD Dasar</span>
+              <span>CI/CD</span>
             </div>
           </div>
 
@@ -355,33 +390,32 @@
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Section Pendidikan & Rencana -->
-    <section id="pendidikan">
-      <div class="wrap">
-        <h2>Pendidikan &amp; rencana ke depan</h2>
+      <!-- Section: Pendidikan (Grouped Container Style) -->
+      <section id="pendidikan">
+        <h2>Pendidikan &amp; Rencana</h2>
+        <p class="section-sub">Jalur akademik formal dan target pengembangan diri ke depan.</p>
+
         <div class="timeline">
           <div>
             <h3>S1 Ilmu Komputer, Universitas Mitra Bangsa</h3>
             <small>2026 – Sekarang (Semester 1)</small>
-            <p style="margin-top: 6px; color: var(--muted); font-size: .95rem;">Fokus pada pemahaman fondasi ilmu komputer, logika matematika diskrit, dan pembuatan proyek perangkat lunak mandiri.</p>
+            <p style="margin-top: 6px; color: var(--text-secondary); font-size: 0.92rem;">Fokus pada pemahaman fondasi ilmu komputer, logika matematika diskrit, dan pembuatan proyek perangkat lunak mandiri.</p>
           </div>
           <div>
             <h3>Target Semester 2 &amp; 3: Struktur Data Lanjutan &amp; Kontribusi Open Source</h3>
             <small>Rencana Pengembangan</small>
-            <p style="margin-top: 6px; color: var(--muted); font-size: .95rem;">Memperdalam database relational (SQL), integrasi backend API, dan aktif berkontribusi pada proyek open source di GitHub.</p>
+            <p style="margin-top: 6px; color: var(--text-secondary); font-size: 0.92rem;">Memperdalam database relational (SQL), integrasi backend API, dan aktif berkontribusi pada proyek open source di GitHub.</p>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Section Catatan Belajar -->
-    <section id="catatan">
-      <div class="wrap">
-        <h2>Catatan belajar</h2>
+      <!-- Section: Catatan Belajar -->
+      <section id="catatan">
+        <h2>Catatan Belajar</h2>
         <p class="section-sub">Dokumentasi wawasan teknis yang saya dapatkan dari setiap baris kode yang ditulis.</p>
+
         <div class="notes">
           <div class="note">
             <h3>Mengubah rumus matematis menjadi fungsi kode</h3>
@@ -399,16 +433,13 @@
             <small>Dipetik dari proses deployment proyek</small>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Section Kontak -->
-    <section id="kontak" class="contact">
-      <div class="wrap">
+      <!-- Section: Kontak & Kolaborasi -->
+      <section id="kontak" class="contact">
         <h2>Kontak &amp; Kolaborasi</h2>
         <p>Tertarik mendiskusikan proyek web, berkolaborasi, atau sekadar bertukar pikiran seputar dunia pemrograman? Pintu komunikasi selalu terbuka!</p>
 
-        <!-- Tombol Salin Cepat & Direct Links -->
         <div class="contact-quick">
           <button class="copy-btn" type="button" data-copy="am1049128@gmail.com" data-label="Email">
             <span>📋 Salin Email: am1049128@gmail.com</span>
@@ -419,13 +450,12 @@
         </div>
 
         <div class="btns">
-          <a class="btn primary" href="mailto:am1049128@gmail.com">Kirim Email</a>
+          <a class="btn primary" href="mailto:am1049128@gmail.com">Kirim Email Langsung</a>
           <a class="btn ghost" href="cv.pdf" download>Unduh CV (PDF)</a>
           <a class="btn ghost" href="https://wa.me/6281226818063" target="_blank" rel="noopener">WhatsApp</a>
           <a class="btn ghost" href="https://github.com/am1049128-lab" target="_blank" rel="noopener">GitHub</a>
         </div>
 
-        <!-- Formulir Pesan Langsung -->
         <form class="cform" id="cform">
           <h3>Kirim pesan instan</h3>
           <label for="nama">Nama kamu</label>
@@ -439,8 +469,9 @@
             <button class="btn ghost" type="button" id="mailbtn">Kirim via Email</button>
           </div>
         </form>
-      </div>
-    </section>
+      </section>
+
+    </div>
   </main>
 
   <!-- Toast Notifikasi Mini -->
@@ -449,11 +480,11 @@
   <!-- Footer -->
   <footer>
     <div class="wrap">
-      &copy; <span id="yr"></span> Ahmad Abdul Mujahid. Dirancang &amp; dikembangkan dengan HTML, CSS, dan JavaScript murni.
+      &copy; <span id="yr"></span> Ahmad Abdul Mujahid. Didesain dengan prinsip AMOLED Glassmorphism &amp; performa tinggi.
     </div>
   </footer>
 
-  <!-- Script Eksternal (Modular) -->
+  <!-- Script Eksternal (Alur Logika Asli - HARAM DISENTUH) -->
   <script src="js/sorting.js"></script>
   <script src="js/main.js"></script>
 </body>
