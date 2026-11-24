@@ -515,7 +515,7 @@ header.top-header {
    Hero Section
    ========================================================================== */
 .hero {
-  padding: 28px 0 42px;
+  padding: 44px 0 48px;
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   gap: 40px;
