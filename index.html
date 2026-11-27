@@ -40,6 +40,25 @@
 
   <!-- Stylesheet AMOLED Glassmorphism -->
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Ahmad Abdul Mujahid",
+    "url": "https://am1049128-lab.github.io/web-porto-amd/",
+    "image": "https://am1049128-lab.github.io/web-porto-amd/foto.jpg",
+    "jobTitle": "Mahasiswa S1 Ilmu Komputer",
+    "affiliation": {
+      "@type": "CollegeOrUniversity",
+      "name": "Universitas Mitra Bangsa"
+    },
+    "sameAs": [
+      "https://github.com/am1049128-lab"
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -59,7 +78,7 @@
     <div class="wrap top-bar">
       <!-- Identitas & Logo Brand -->
       <a class="logo-avatar" href="#top" aria-label="Ahmad Abdul Mujahid, kembali ke atas">
-        <span class="mark" aria-hidden="true"><img src="logo.png" alt="Logo" class="logo-img" width="40" height="40"></span>
+        <span class="mark" aria-hidden="true"><img src="logo.png" alt="Logo Ahmad Abdul Mujahid" class="logo-img" width="40" height="40"></span>
         <div class="who">
           <span class="name" id="name">Ahmad Abdul Mujahid</span>
           <span class="tag">
@@ -138,7 +157,7 @@
 
           <div class="viz-foot">
             <div>
-              <div id="status" style="font-weight: 700; color: #FFFFFF;">Bubble Sort: Siap diuji</div>
+              <div id="status" class="viz-status">Bubble Sort: Siap diuji</div>
               <div class="viz-stats">
                 <span>Banding: <b id="stat-cmp">0</b></span>
                 <span>Tukar: <b id="stat-swap">0</b></span>
@@ -404,12 +423,12 @@
           <div>
             <h3>S1 Ilmu Komputer, Universitas Mitra Bangsa</h3>
             <small>2026 – Sekarang (Semester 1)</small>
-            <p style="margin-top: 6px; color: var(--text-secondary); font-size: 0.95rem;">Fokus pada pemahaman fondasi ilmu komputer, logika matematika diskrit, dan pembuatan proyek perangkat lunak mandiri.</p>
+            <p class="timeline-desc">Fokus pada pemahaman fondasi ilmu komputer, logika matematika diskrit, dan pembuatan proyek perangkat lunak mandiri.</p>
           </div>
           <div>
             <h3>Target Semester 2 &amp; 3: Struktur Data Lanjutan &amp; Kontribusi Open Source</h3>
             <small>Rencana Pengembangan</small>
-            <p style="margin-top: 6px; color: var(--text-secondary); font-size: 0.95rem;">Memperdalam database relational (SQL), integrasi backend API, dan aktif berkontribusi pada proyek open source di GitHub.</p>
+            <p class="timeline-desc">Memperdalam database relational (SQL), integrasi backend API, dan aktif berkontribusi pada proyek open source di GitHub.</p>
           </div>
         </div>
       </section>
@@ -447,10 +466,12 @@
 
         <div class="contact-quick">
           <button class="copy-btn" type="button" data-copy="am1049128@gmail.com" data-label="Email">
-            <span>📋 Salin Email: am1049128@gmail.com</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            <span>Salin Email: am1049128@gmail.com</span>
           </button>
           <button class="copy-btn" type="button" data-copy="081226818063" data-label="Nomor WhatsApp">
-            <span>📋 Salin WA: 0812 2681 8063</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            <span>Salin WA: 0812 2681 8063</span>
           </button>
         </div>
 

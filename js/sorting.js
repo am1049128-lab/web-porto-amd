@@ -28,6 +28,7 @@
   let bars = [];
   let isSorting = false;
   let cancelToken = false;
+  let currentRunId = 0;
   let comparisons = 0;
   let swaps = 0;
 
@@ -90,6 +91,7 @@
 
   function initArray() {
     cancelToken = true;
+    currentRunId++;
     barsEl.innerHTML = '';
     data = Array.from({ length: N }, (_, i) => i + 1);
 
@@ -249,6 +251,7 @@
   async function startSorting() {
     if (isSorting) return;
     cancelToken = false;
+    const myRun = ++currentRunId;
     setControlsSortingState(true);
     resetStats();
 
@@ -267,6 +270,8 @@
     } else {
       completed = await runBubbleSort();
     }
+
+    if (myRun !== currentRunId) return;
 
     if (completed && !cancelToken) {
       statusEl.textContent = `Selesai: ${swaps} pertukaran, ${comparisons} perbandingan!`;

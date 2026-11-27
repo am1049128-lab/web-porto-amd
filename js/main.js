@@ -86,23 +86,31 @@ document.addEventListener('DOMContentLoaded', () => {
     updateProgress();
   }
 
-  // 6. Active Navigation Spy
+  // 6. Active Navigation Spy (Termasuk #top / Beranda)
   const navLinks = document.querySelectorAll('.nav-menu a');
+  const heroEl = document.querySelector('.hero');
   const sections = document.querySelectorAll('main section[id]');
-  if (navLinks.length && sections.length) {
+  const spyTargets = heroEl ? [heroEl, ...sections] : [...sections];
+
+  if (navLinks.length && spyTargets.length) {
+    const setActiveNav = (id) => {
+      navLinks.forEach((a) => {
+        a.classList.toggle('active', a.getAttribute('href') === `#${id}`);
+      });
+    };
     const spy = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
           if (e.isIntersecting) {
-            navLinks.forEach((a) => {
-              a.classList.toggle('active', a.getAttribute('href') === `#${e.target.id}`);
-            });
+            const targetId = e.target === heroEl ? 'top' : e.target.id;
+            setActiveNav(targetId);
           }
         });
       },
-      { rootMargin: '-40% 0px -50% 0px' }
+      { rootMargin: '-35% 0px -55% 0px' }
     );
-    sections.forEach((s) => spy.observe(s));
+    spyTargets.forEach((s) => spy.observe(s));
+    if (window.scrollY < 100) setActiveNav('top');
   }
 
   // 7. Navigasi Mobile (Hamburger Toggle)
@@ -124,14 +132,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 8. Dark Mode Toggle
+  // 8. Dark Mode Toggle (Ikon SVG Konsisten)
   const root = document.documentElement;
   const themeBtn = document.getElementById('theme');
+  const SUN_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>';
+  const MOON_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>';
+
   const updateThemeIcon = () => {
     if (!themeBtn) return;
     const isDark = root.dataset.theme === 'dark';
-    themeBtn.textContent = isDark ? '\u2600' : '\u263E';
+    themeBtn.innerHTML = isDark ? SUN_SVG : MOON_SVG;
     themeBtn.setAttribute('title', isDark ? 'Beralih ke mode terang' : 'Beralih ke mode gelap');
+    themeBtn.setAttribute('aria-label', isDark ? 'Beralih ke mode terang' : 'Beralih ke mode gelap');
   };
 
   if (themeBtn) {
@@ -174,16 +186,36 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 11. Statistik GitHub Publik
+  // 11. Statistik GitHub Publik (dengan cache sessionStorage 15 menit)
   const ghEl = document.getElementById('gh');
   if (ghEl) {
-    fetch('https://api.github.com/users/am1049128-lab')
-      .then((r) => (r.ok ? r.json() : Promise.reject()))
-      .then((d) => {
-        ghEl.textContent = `Di GitHub: ${d.public_repos} repositori publik ${d.followers ? '• ' + d.followers + ' pengikut' : ''}`;
-        ghEl.hidden = false;
-      })
-      .catch(() => {});
+    const renderGhStats = (d) => {
+      ghEl.textContent = `Di GitHub: ${d.public_repos} repositori publik${d.followers ? ' • ' + d.followers + ' pengikut' : ''}`;
+      ghEl.hidden = false;
+    };
+    const CACHE_KEY = 'gh_stats_am1049128';
+    const CACHE_TTL = 15 * 60 * 1000;
+    let cached = null;
+    try {
+      const raw = sessionStorage.getItem(CACHE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (Date.now() - parsed.ts < CACHE_TTL) cached = parsed;
+      }
+    } catch (e) {}
+
+    if (cached) {
+      renderGhStats(cached);
+    } else {
+      fetch('https://api.github.com/users/am1049128-lab')
+        .then((r) => (r.ok ? r.json() : Promise.reject()))
+        .then((d) => {
+          const payload = { ts: Date.now(), public_repos: d.public_repos, followers: d.followers };
+          try { sessionStorage.setItem(CACHE_KEY, JSON.stringify(payload)); } catch (e) {}
+          renderGhStats(payload);
+        })
+        .catch(() => {});
+    }
   }
 
   // 12. Toast Notification & Salin Kontak
@@ -207,11 +239,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!text) return;
 
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(() => {
-          showToast(`✓ ${label} berhasil disalin!`);
-        });
+        navigator.clipboard.writeText(text)
+          .then(() => showToast(`✓ ${label} berhasil disalin!`))
+          .catch(() => showToast(`Gagal menyalin ${label}.`));
       } else {
-        // Fallback
         const textarea = document.createElement('textarea');
         textarea.value = text;
         document.body.appendChild(textarea);
